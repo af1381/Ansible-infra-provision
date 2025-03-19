@@ -1,1 +1,6 @@
+- name: install Process exporter in 2 nodes
+  hosts: all
+  become: yes
+  roles:
+    - process_exporter
 
