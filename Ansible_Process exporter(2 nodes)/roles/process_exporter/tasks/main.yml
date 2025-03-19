@@ -1,1 +1,33 @@
+---
+- name: Download Process Exporter
+  ansible.builtin.get_url:
+    url: "{{ process_exporter_url }}"
+    dest: "/tmp/process-exporter.tar.gz"
+    mode: '0644'
+
+- name: Extract files
+  ansible.builtin.unarchive:
+    src: "/tmp/process-exporter.tar.gz"
+    dest: "/tmp/"
+    remote_src: yes
+
+- name: Copy binary to {{ install_dir }}
+  ansible.builtin.copy:
+    src: "/tmp/process-exporter-{{ process_exporter_version }}.linux-amd64/process-exporter"
+    dest: "{{ install_dir }}/process-exporter"
+    mode: '0755'
+    remote_src: yes
+
+- name: Copy service file
+  ansible.builtin.template:
+    src: "process-exporter.service.j2"
+    dest: "/etc/systemd/system/process-exporter.service"
+  notify: Restart process_exporter
+
+- name: Enable and start the service
+  ansible.builtin.systemd:
+    name: process-exporter
+    state: started
+    enabled: yes
+
 
