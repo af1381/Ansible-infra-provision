@@ -1,1 +1,9 @@
+all:
+  hosts:
+    master:
+      ansible_host: <your-ip-address>
+      ansible_user: user_name
+    worker:
+      ansible_host: your-ip-address
+      ansible_user: user_name
 
