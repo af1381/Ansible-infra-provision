@@ -1,1 +1,12 @@
+[Unit]
+Description=Process Exporter for Prometheus
+After=network.target
+
+[Service]
+User=root
+ExecStart={{ install_dir }}/process-exporter
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
 
