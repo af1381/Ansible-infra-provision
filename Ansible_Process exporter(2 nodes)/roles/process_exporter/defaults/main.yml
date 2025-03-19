@@ -1,1 +1,5 @@
+---
+process_exporter_version: "0.8.5"
+process_exporter_url: "https://github.com/ncabatoff/process-exporter/releases/download/v{{ process_exporter_version }}/process-exporter-{{ process_exporter_version }}.linux-amd64.tar.gz"
+install_dir: "/usr/local/bin"
 
