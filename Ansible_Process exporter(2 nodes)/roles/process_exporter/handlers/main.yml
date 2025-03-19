@@ -1,1 +1,6 @@
+- name:
+  ansible.builtin.systemd:
+    name: process-exporter.service
+    state: restarted
+    daemon_reload: yes
 
